@@ -26,13 +26,13 @@ fn written_2_test() {
 
   let test_size = 100000;
   let data_info = vec![
-    ("data_10.dat", 10),
-    ("data_100.dat", 100),
-    ("data_1000.dat", 1000),
-    ("data_2000.dat", 2000),
-    ("data_4000.dat", 4000),
-    ("data_8000.dat", 8000),
-    ("data_16000.dat", 16000)
+    ("test_files/data_10.dat", 10),
+    ("test_files/data_100.dat", 100),
+    ("test_files/data_1000.dat", 1000),
+    ("test_files/data_2000.dat", 2000),
+    ("test_files/data_4000.dat", 4000),
+    ("test_files/data_8000.dat", 8000),
+    ("test_files/data_16000.dat", 16000)
     ];
 
   for (test_file, array_size) in data_info {

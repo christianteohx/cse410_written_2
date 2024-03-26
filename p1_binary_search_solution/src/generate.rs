@@ -47,7 +47,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     }
 
-    let filename = format!("data_{}.dat", array_size);
+    let filename = format!("test_files/data_{}.dat", array_size);
     let mut file = File::create(&filename)?;
 
     println!("Generating {} records of size {} each = 0x{:x} -> {}", 
