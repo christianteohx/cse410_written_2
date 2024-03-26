@@ -22,6 +22,43 @@ const FIRST_RECORD: Record = Record {
 };
 
 #[test]
+fn open_file()
+{
+  let file = DataFile::open(&"test_files/data_10.dat".to_string()).unwrap();
+  // assert!(file.len() == TEST_FILE_SIZE);
+}
+
+#[test]
+fn get_one()
+{
+  let mut file = DataFile::open(&TEST_FILE.to_string()).unwrap();
+  let result = file.get(file.len() / 2).unwrap();
+
+  println!("get({}): {:?}", file.len() / 2, result);
+  assert!(result == MID_RECORD);
+}
+
+#[test]
+fn find_present()
+{
+  let mut file = DataFile::open(&TEST_FILE.to_string()).unwrap();
+  let result = file.find(FOUND_RECORD.key).unwrap().unwrap();
+
+  println!("find({}): {:?}", FOUND_RECORD.key, result);
+  assert!(result == FOUND_RECORD);
+}
+
+#[test]
+fn find_missing()
+{
+  let mut file = DataFile::open(&TEST_FILE.to_string()).unwrap();
+  let result = file.find(FOUND_RECORD.key-1).unwrap().unwrap();
+
+  println!("find({}): {:?}", FOUND_RECORD.key-1, result);
+  assert!(result == FOUND_RECORD);
+}
+
+#[test]
 fn written_2_test() {
 
   let test_size = 100000;
@@ -52,9 +89,9 @@ fn written_2_test() {
 
     while used_time < 10.0 {
 
-      let key = rand::random::<u32>();
+      let key = rand::random::<u32>() % array_size as u32;
       let start = Instant::now();
-      file.find(key).unwrap().unwrap();
+      let record = file.find(key).unwrap().unwrap();
       let end = Instant::now();
       let time = (end-start).as_secs_f32();
       time_list.push(time);
